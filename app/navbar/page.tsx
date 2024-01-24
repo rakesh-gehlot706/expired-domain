@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../../my-app/components/navbar/Navbar";
+import Navbar from "../../components/navbar/Navbar";
 
 function page() {
   return <Navbar />;
