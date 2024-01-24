@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import wsLogo from "../../assets/rbimg.png";
+import wsLogo from "../../app/assets/rbimg.png";
 
-export default function page() {
+export default function Login() {
   return (
     <>
       <div className="bg-[#26313c] w-full h-16 flex items-center justify-center">
