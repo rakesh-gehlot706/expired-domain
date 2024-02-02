@@ -39,11 +39,11 @@ function WaybackExpert() {
               className="  w-[400px] bg-white ml-[350px] mt-8 "
               type="text"
               id="password"
-              placeholder="Enter a Domain Name"
+            
             />
             <Select>
               <SelectTrigger className="w-[300px] mt-8 ml-4 border bg-white">
-                <SelectValue placeholder="Select Domain" />
+                <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>

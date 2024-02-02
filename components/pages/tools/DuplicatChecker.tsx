@@ -45,11 +45,11 @@ function DuplicatChecker() {
               <div className="flex flex-col md:flex-row">
                 <Input
                   className="bg-white w-full md:w-[260px] rounded-none mt-2 md:mt-0"
-                  placeholder="Enter Task Name"
+                 
                 />
                 <Select>
                   <SelectTrigger className="w-full md:w-[260px] bg-white rounded-none mt-2 md:mt-0">
-                    <SelectValue placeholder="Select State" />
+                    <SelectValue/>
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
@@ -75,7 +75,7 @@ function DuplicatChecker() {
               <div className="mt-4 md:mt-8">
                 <Input
                   className="w-full md:w-[calc(100% - 6rem)] bg-white outline-offset-2 mt-2 md:mt-0 "
-                  placeholder="Enter a List Name"
+                  
                 />
               </div>
               <div className="mt-8 md:mt-20 md:mr-8 pt-6 flex justify-end">

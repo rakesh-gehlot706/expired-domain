@@ -45,7 +45,7 @@ function IndexChecker() {
               <div>
                 <Textarea
                   className="w-[550px] h-[200px] items-center justify-center bg-white ml-2"
-                  placeholder='hello'
+                 
                 />
               </div>
               <div>
@@ -57,7 +57,7 @@ function IndexChecker() {
                     className="ml-2 mt-2 w-[110px] border-2 h-[40px] bg-gray  hover:bg-white"
                     id="picture"
                     type="File"
-                    placeholder="Drag & Drop or Browse Your File"
+                   
                   />
                 </div>
               </div>

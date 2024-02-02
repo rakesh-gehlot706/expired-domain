@@ -162,7 +162,7 @@ function PrivateDomain() {
                 <h1 className="mt-2 ml-2 text-xs text-blue-900">Private Domain</h1>
                 <Select>
                   <SelectTrigger className="w-[70px] mt-1 ml-2 text-xs text-blue-900">
-                    <SelectValue placeholder="25" />
+                    <SelectValue  />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>

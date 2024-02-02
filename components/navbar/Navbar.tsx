@@ -182,7 +182,7 @@ function Navbar() {
             <DialogHeader>
               <DialogTitle> Your Domain Lists</DialogTitle>
               <DialogDescription>
-                <Textarea placeholder="Enter your domais details." />
+                <Textarea />
                 <p>You have no Domain List</p>
               </DialogDescription>
             </DialogHeader>

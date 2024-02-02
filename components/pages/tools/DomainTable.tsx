@@ -109,7 +109,7 @@ function DomainTable() {
               <div className="w-full h-12  border">
                 <Select>
                   <SelectTrigger className="w-[180px] mt-1 ml-2">
-                    <SelectValue placeholder="Select Domain" />
+                    <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
