@@ -33,7 +33,7 @@ function WhoisTool() {
               <div>
                 <Textarea
                   className="w-[550px] h-[200px] items-center justify-center bg-white ml-6"
-                  placeholder="Enter a Domain Name."
+                 
                 />
               </div>
               <div>
@@ -45,7 +45,7 @@ function WhoisTool() {
                     className="ml-6 mt-2 w-[550px] h-[100px] bg-white outline-dashed outline-2 outline-offset-2"
                     id="picture"
                     type="File"
-                    placeholder="Drag & Drop or Browse Your File"
+                  
                   />
                 </div>
               </div>
@@ -56,7 +56,7 @@ function WhoisTool() {
                 </Label>
                 <Input
                   className="ml-6 mt-2 w-[550px] h-[50px] bg-white  outline-offset-2"
-                  placeholder="Enter a List Name"
+                 
                 />
               </div>
 

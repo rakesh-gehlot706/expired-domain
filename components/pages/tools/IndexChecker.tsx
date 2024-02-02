@@ -65,7 +65,7 @@ function IndexChecker() {
               <div className="mt-4">
               <Select>
       <SelectTrigger className="w-[540px] ml-2 bg-white">
-        <SelectValue placeholder="Select State" />
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

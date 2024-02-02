@@ -53,7 +53,7 @@ function RegistrarCompare() {
     </h1>
     </div>
     <div className='w-[300px] m-auto mt-4 flex'>
-    <Input className='rounded-none rounded-l-md bg-white' type="email" placeholder="Type a Domain Name..." />
+    <Input className='rounded-none rounded-l-md bg-white' type="email"  />
     <Button className='rounded-none rounded-r-md'>Search</Button>
     </div>
     <div>
