@@ -51,7 +51,7 @@ function Navbar() {
           className="w-[150px] bg-white ml-2 mt-2 border-none outline-none text-xs"
           type="text"
          
-          placeholder="Enter Keyword..."
+          // placeholder="Enter Keyword..."
         />
         <Button className="ml-4 mt-2 " variant="outline">
           <IoSearchOutline />
