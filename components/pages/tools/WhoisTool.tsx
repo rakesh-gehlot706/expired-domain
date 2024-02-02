@@ -3,16 +3,17 @@ import Navbar from "@/components/navbar/Navbar";
 import Sidebar from "@/components/sidebar/Sidebar";
 import React from "react";
 import { Textarea } from "@/components/ui/textarea";
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import SideDemo from "@/components/sidedemo/SideDemo";
 
 function WhoisTool() {
   return (
     <>
       <Navbar />
       <div className="flex">
-        <Sidebar />
+        <SideDemo />
         <div className="w-full h-[1100px] border-2 bg-[#f5f7fa]">
           <div className="text-center">
             <h1 className="text-3xl font-semibold mt-2">WHOIS checker</h1>
@@ -36,20 +37,31 @@ function WhoisTool() {
                 />
               </div>
               <div>
-              <div className="grid w-full lg:max-w-sm items-center gap-1.5">
-                <Label className="ml-6 mt-2"  htmlFor="picture">or upload a file with domains (Max 30,000)</Label>
-                  <Input className="ml-6 mt-2 w-[550px] h-[100px] bg-white outline-dashed outline-2 outline-offset-2" id="picture" type="File" placeholder="Drag & Drop or Browse Your File"/>
-                  </div>
+                <div className="grid w-full lg:max-w-sm items-center gap-1.5">
+                  <Label className="ml-6 mt-2" htmlFor="picture">
+                    or upload a file with domains (Max 30,000)
+                  </Label>
+                  <Input
+                    className="ml-6 mt-2 w-[550px] h-[100px] bg-white outline-dashed outline-2 outline-offset-2"
+                    id="picture"
+                    type="File"
+                    placeholder="Drag & Drop or Browse Your File"
+                  />
+                </div>
               </div>
 
               <div className="mt-4">
-              <Label className="ml-6 "  htmlFor="picture">Name your List (optional)</Label>
-                  <Input className="ml-6 mt-2 w-[550px] h-[50px] bg-white  outline-offset-2"   placeholder="Enter a List Name"/>
-
+                <Label className="ml-6 " htmlFor="picture">
+                  Name your List (optional)
+                </Label>
+                <Input
+                  className="ml-6 mt-2 w-[550px] h-[50px] bg-white  outline-offset-2"
+                  placeholder="Enter a List Name"
+                />
               </div>
 
               <div className="ml-6 mt-4 flex flex-end">
-               <Button>Submit</Button>
+                <Button>Submit</Button>
               </div>
             </div>
             <div className="border-2 mr-[100px] bg-white rounded-sm"></div>
@@ -57,9 +69,7 @@ function WhoisTool() {
         </div>
       </div>
       <div className="w-full h-20  bg-[#1f2937]">
-          <h1 className="text-white pt-4 pl-20">
-           @ WS-Expired Domain
-          </h1>
+        <h1 className="text-white pt-4 pl-20">@ WS-Expired Domain</h1>
       </div>
     </>
   );

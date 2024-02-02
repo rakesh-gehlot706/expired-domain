@@ -35,6 +35,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { format } from "date-fns";
+import { FaDotCircle } from "react-icons/fa";
+import { FaCircleNotch } from "react-icons/fa";
+import SideDemo from "@/components/sidedemo/SideDemo";
 
 const GET_DATA = gql`
   query GetDomains($input: paginationInput) {
@@ -42,6 +46,25 @@ const GET_DATA = gql`
       limit
       result {
         domain_link
+        domain_length
+        domain_backlinks
+        domain_pop
+        domain_creationDate
+        domain_ACR
+        domain_MMGR
+        domain_DMOZ
+        domain_reg
+        domain_status_com
+        domain_status_net
+        domain_status_org
+        domain_status_biz
+        domain_status_info
+        domain_status_de
+        domain_addDate
+        domain_related_cnobi
+        domain_wikipedia_links
+        domain_dropped
+        domain_whois_status
       }
       page
       totalPage
@@ -56,7 +79,7 @@ function DomainTable() {
     variables: {
       input: {
         page: currentPage + 1,
-        limit: 20,
+        limit: 15,
       },
     },
   });
@@ -69,15 +92,18 @@ function DomainTable() {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0)); // Ensure the page doesn't go below 1
   };
 
-  console.log(data?.getDomains, "-->data");
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxClick = () => {
+    setIsChecked(!isChecked);
+  };
 
   return (
     <>
       <Navbar />
       <div className="flex">
-        <Sidebar />
+        <SideDemo />
 
-        <div className="w-full h-[1100px] bg-[#f5f7fa]">
+        <div className="w-full h-auto bg-[#f5f7fa]">
           <div className="w-[98%] h-[1050px] mt-5 border-blue-950 bg-white items-center m-auto p-5 shadow-blue-800">
             <div className="w-full h-full border">
               <div className="w-full h-12  border">
@@ -126,79 +152,133 @@ function DomainTable() {
               </div>
               <div>
                 <Table className="border-1 overflow-y-scroll">
-                  <TableHeader>
+                  <TableHeader className="h-[70px]">
                     <TableRow>
-                      <TableHead className="text-center border bg-gradient-to-b from-slate-200">
+                      <TableHead className=" text-center border bg-gradient-to-b from-slate-200">
                         <div className="items-center justify-center">
-                          <Checkbox id="terms" />
+                          <Checkbox id="terms" className="mr-2" />
                         </div>
                       </TableHead>
-                      <TableHead className="text-center border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
+                      <TableHead className="text-center border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer">
                         Domain
                       </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Source
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="The number of characters in the domain name"
+                      >
+                        LE
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="SEOkicks Domain Pop - Number of Backlinks from different Domains"
+                      >
+                        DP
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" The Birth Year of the Domain using the Whois Creation Date as Birthday."
+                      >
+                        WBY
+                      </TableHead>
+                      {/* <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
+                        ABY
+                      </TableHead> */}
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="  Archive.org Number of Crawl Results"
+                      >
+                        ACR
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="  Majestic Million Global Rank (smaller is better)"
+                      >
+                        MMGR
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="   Status of the Domain in Dmoz.org"
+                      >
+                        DMOZ
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="   Number of TLDs the Domain Name is Registered"
+                      >
+                        REG
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" DNS Status .com of Domain Name"
+                      >
+                        C
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="  DNS Status .net of Domain Name"
+                      >
+                        N
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="DNS Status .org of Domain Name"
+                      >
+                        O
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" DNS Status .biz of Domain Name"
+                      >
+                        B
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" DNS Status .info of Domain Name"
+                      >
+                        I
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" DNS Status .de of Domain Name"
+                      >
+                        D
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" Date the Domain was added to the Domain List"
+                      >
+                        ADD DATE
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" Number of Related Domains in .com/.net/.org/.biz/.info (starts with + ends with)"
+                      >
+                        RDT
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="Number of Links from *.wikipedia.org"
+                      >
+                        WPL
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title=" When the domain dropped"
+                      >
+                        DROPPED
+                      </TableHead>
+                      <TableHead
+                        className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900 cursor-pointer"
+                        title="Status of the Domain (Available or Registered)"
+                      >
+                        STATUS
+                      </TableHead>
+                      {/* <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
+                        PRICE
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        TF
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        CF
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MAY BL
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MAY RD
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MAY Topics
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Maj lang
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Site lang
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MOZ DA
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MOZ PA
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Age
-                      </TableHead>
-                      <TableHead className="text-center  text-white from-slate-200 bg-[#1f2937] text-xs">
-                        WS Score
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        WS Redirect
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        WS Parked
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        WS A/History
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        WS Drops
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Google Index
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Out Links Internal
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Date Aded
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Price
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Expires
-                      </TableHead>
+                        EXPIRE
+                      </TableHead> */}
                     </TableRow>
                   </TableHeader>
                   <TableBody className="border">
@@ -206,15 +286,183 @@ function DomainTable() {
                       return (
                         <TableRow className="border" key={key}>
                           <TableCell className="font-medium">
-                            {/* {invoice.invoice} */}
-                            <Checkbox id="terms" />
+                            <Checkbox id={`terms${key}`} />
                           </TableCell>
-                          <TableCell className="border">
+                          <TableCell className="text-left border text-xs">
                             {item.domain_link}
                           </TableCell>
-                          {/* <TableCell>{item.paymentMethod}</TableCell> */}
-                          <TableCell className="text-right">
-                            {/* {invoice.totalAmount} */}
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_length}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_backlinks}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {format(
+                              new Date(item.domain_creationDate),
+                              "dd/MM/yy"
+                            )}
+                          </TableCell>
+                          {/* <TableCell className="text-center border text-xs">
+                            {item.domain_length}
+                          </TableCell> */}
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_ACR.replace(/\D/g, "")}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_MMGR}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_DMOZ}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_reg}
+                          </TableCell>
+                          <TableCell
+                            className="text-center border text-xs "
+                            style={{
+                              color:
+                                item.domain_status_com === "available"
+                                  ? "green"
+                                  : item.domain_status_com === "register"
+                                  ? "red"
+                                  : "red",
+                            }}
+                          >
+                            {/* {item.domain_status_com} */}
+                            <FaCircleNotch
+                              title={
+                                item.domain_status_com === "available"
+                                  ? "Available"
+                                  : "Registered"
+                              }
+                            />
+                          </TableCell>
+                          <TableCell
+                            className="text-center border text-xs"
+                            style={{
+                              color:
+                                item.domain_status_net === "available"
+                                  ? "green"
+                                  : item.domain_status_net === "register"
+                                  ? "red"
+                                  : "red",
+                            }}
+                          >
+                            {/* {item.domain_status_net} */}
+                            <FaCircleNotch
+                              title={
+                                item.domain_status_net === "available"
+                                  ? "Available"
+                                  : "Registered"
+                              }
+                            />
+                          </TableCell>
+                          <TableCell
+                            className="text-center border text-xs"
+                            style={{
+                              color:
+                                item.domain_status_org === "available"
+                                  ? "green"
+                                  : item.domain_status_org === "register"
+                                  ? "red"
+                                  : "red",
+                            }}
+                          >
+                            {/* {item.domain_status_org} */}
+                            <FaCircleNotch
+                              title={
+                                item.domain_status_org === "available"
+                                  ? "Available"
+                                  : "Registered"
+                              }
+                            />
+                          </TableCell>
+                          <TableCell
+                            className="text-right border text-xs"
+                            style={{
+                              color:
+                                item.domain_status_biz === "available"
+                                  ? "green"
+                                  : item.domain_status_biz === "register"
+                                  ? "red"
+                                  : "red",
+                            }}
+                          >
+                            {/* {item.domain_status_biz} */}
+                            <FaCircleNotch
+                              title={
+                                item.domain_status_biz === "available"
+                                  ? "Available"
+                                  : "Registered"
+                              }
+                            />
+                          </TableCell>
+                          <TableCell
+                            className="text-right border text-xs"
+                            style={{
+                              color:
+                                item.domain_status_info === "available"
+                                  ? "green"
+                                  : item.domain_status_info === "register"
+                                  ? "red"
+                                  : "red",
+                            }}
+                          >
+                            {/* {item.domain_status_info} */}
+                            <FaCircleNotch
+                              title={
+                                item.domain_status_info === "available"
+                                  ? "Available"
+                                  : "Registered"
+                              }
+                            />
+                          </TableCell>
+                          <TableCell
+                            className="text-right border text-xs"
+                            style={{
+                              color:
+                                item.domain_status_de === "available"
+                                  ? "green"
+                                  : item.domain_status_de === "register"
+                                  ? "red"
+                                  : "red",
+                            }}
+                          >
+                            {/* {item.domain_status_de} */}
+                            <FaCircleNotch
+                              title={
+                                item.domain_status_de === "available"
+                                  ? "Available"
+                                  : "Registered"
+                              }
+                            />
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {format(
+                              new Date(item.domain_creationDate),
+                              "dd/MM/yy"
+                            )}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_related_cnobi}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_wikipedia_links}
+                          </TableCell>
+                          <TableCell className="text-center border text-xs">
+                            {item.domain_dropped}
+                          </TableCell>
+                          <TableCell
+                            className="text-center border text-xs"
+                            style={{
+                              color:
+                                item.domain_whois_status === "available"
+                                  ? "green"
+                                  : "red",
+                            }}
+                          >
+                            {item.domain_whois_status}
                           </TableCell>
                         </TableRow>
                       );

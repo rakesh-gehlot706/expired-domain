@@ -23,6 +23,7 @@ import { FaClone } from "react-icons/fa6";
 import { FaListOl } from "react-icons/fa6";
 import { FaAddressCard } from "react-icons/fa";
 import { GiBinoculars } from "react-icons/gi";
+import { FaArrowAltCircleRight } from "react-icons/fa";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -46,22 +47,21 @@ export default function Sidebar(): any {
     curval = value;
     setIsSubMenuOpen((prevState) => (prevState === value ? "" : value));
   };
-
-
   
 
   return (
     <div>
+      
       <nav
-        className={`flex h-[1100px] justify-center text-xs transition-all duration-500 text-white bg-gray-800 
+        className={`flex h-[1100px] border-2 justify-center text-xs transition-all duration-500  bg-white
         ${sidebar ? "w-20" : "w-40"}
         `}
       >
-        <ul className="space-y-12 mt-2">
+        <ul className="space-y-12 mt-2 ">
           <li>
             <Link href="#" onClick={() => handleMenuClick()}>
-              <div className="flex gap-x-4">
-                <FaBars />
+              <div className="flex gap-x-4 ">
+                <FaBars  />
                 {!sidebar && "pages"}
               </div>
             </Link>
@@ -69,7 +69,7 @@ export default function Sidebar(): any {
 
           <li className="relative" id="tools">
             <Link
-              className="transition-all duration-5000 text-white"
+              className="transition-all duration-300"
               href="#"
               onClick={() => {
                 handleToolsClick("tools");
@@ -78,10 +78,11 @@ export default function Sidebar(): any {
               <div className="flex gap-x-4  transition-all duration-300 ">
                 <FaTools />
                 {!sidebar && <span className="flex items-center">Tools</span>}
-              </div>
+             </div>
             </Link>
+            <div>
             {(isSubMenuOpen === "tools" || curval === "tools") && (
-              <ul className="text-xs space-y-4  absolute top-full left-0 mt-2 bg-black border rounded shadow-md p-2 transition-all ease-in-out duration-300 duration-5000 opacity-99 ">
+              <ul className="text-xs bg-black text-white w-[138px] space-y-4 absolute top-full -left-5 mt-2 border p-2 transition-all ease-in-out duration-500 ">
                 <li className="flex gap-1">
                   <FaTable />
                   <Link href="/pages/tools/domainTable">Domain Table</Link>
@@ -116,23 +117,24 @@ export default function Sidebar(): any {
                 </li>
               </ul>
             )}
+              </div>
           </li>
 
           <li id="domains">
             <Link
-              className="transition-all duration-500 text-white "
+              className="transition-all duration-500 "
               href="/sidebar"
               onClick={() => {
                 handleToolsClick("domains");
               }}
             >
-              <div className="flex gap-x-4 justify-center items-center ">
+              <div className="flex gap-x-4 justify-center items-center  ">
                 <AiOutlineBars />
                 {!sidebar && <span className="flex items-center">Domains</span>}
               </div>
             </Link>
-            {isSubMenuOpen == "domains" && (
-              <ul className=" pl-4 space-y-4 mt-2  text-xs">
+            {(isSubMenuOpen === "domains" || curval === "domains") && (
+              <ul className=" pl-4 space-y-4 mt-2  text-xs ">
                 <li className="flex">
                   <FaAddressCard />
                   <Link href="pages/domain/privateDomain">Private Domain</Link>
@@ -147,7 +149,7 @@ export default function Sidebar(): any {
 
           <li id="content">
             <Link
-              className="transition-all duration-500 text-white"
+              className="transition-all duration-500 "
               href="/sidebar"
               onClick={() => {
                 handleToolsClick("content");
@@ -172,7 +174,7 @@ export default function Sidebar(): any {
 
           <li id="setting">
             <Link
-              className="transition-all duration-500 text-white"
+              className="transition-all duration-500 "
               href="/sidebar"
               onClick={() => {
                 handleToolsClick("setting");
