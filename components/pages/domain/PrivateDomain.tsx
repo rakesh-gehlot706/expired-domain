@@ -22,14 +22,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Checkbox } from "@/components/ui/checkbox";
-// import { Button } from "@/components/ui/button";
 import { LuRefreshCcw } from "react-icons/lu";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { IoSettings } from "react-icons/io5";
 import { FaRegFolderOpen } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
-// import { Input } from "@/components/ui/sheet";
-// import { Label } from "@/components/ui/sheet";
+
 import {
   Sheet,
   SheetClose,
@@ -40,6 +38,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import SideDemo from "@/components/sidedemo/SideDemo";
+import { AiOutlineDelete } from "react-icons/ai";
+import { FaFolderOpen } from "react-icons/fa";
 
 const invoices = [
   {
@@ -154,36 +155,65 @@ function PrivateDomain() {
     <>
       <Navbar />
       <div className="flex">
-        <Sidebar />
+        <SideDemo />
         <div className="w-full h-[1100px] bg-[#f5f7fa]">
           <div className="w-[98%] h-[1050px] mt-5 border-blue-950 bg-white items-center m-auto p-5 shadow-blue-800">
             <div className="w-full h-full border">
-              <div className="w-[700px]  h-12 flex">
-                <h1 className="mt-2 ml-2 text-xs text-blue-900">Private Domain</h1>
+              <div className="w-full  h-12  flex items-center">
+                <h1 className="mt-2 ml-2 text-m text-blue-900">
+                  Private Domain
+                </h1>
                 <Select>
                   <SelectTrigger className="w-[70px] mt-1 ml-2 text-xs text-blue-900">
-                    <SelectValue  />
+                    <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>25</SelectLabel>
-                      <SelectItem className="text-xs text-blue-900" value="apple">25</SelectItem>
-                      <SelectItem className="text-xs text-blue-900" value="banana">50 </SelectItem>
-                      <SelectItem className="text-xs text-blue-900" value="blueberry">75</SelectItem>
-                      <SelectItem className="text-xs text-blue-900" value="grapes">100 </SelectItem>
-                      <SelectItem className="text-xs text-blue-900" value="pineapple">200 </SelectItem>
-                      <SelectItem className="text-xs text-blue-900" value="pineapple">500 </SelectItem>
+                      <SelectItem
+                        className="text-xs text-blue-900"
+                        value="apple"
+                      >
+                        25
+                      </SelectItem>
+                      <SelectItem
+                        className="text-xs text-blue-900"
+                        value="banana"
+                      >
+                        50{" "}
+                      </SelectItem>
+                      <SelectItem
+                        className="text-xs text-blue-900"
+                        value="blueberry"
+                      >
+                        75
+                      </SelectItem>
+                      <SelectItem
+                        className="text-xs text-blue-900"
+                        value="grapes"
+                      >
+                        100{" "}
+                      </SelectItem>
+                      <SelectItem
+                        className="text-xs text-blue-900"
+                        value="pineapple"
+                      >
+                        200{" "}
+                      </SelectItem>
+                      <SelectItem
+                        className="text-xs text-blue-900"
+                        value="pineapple"
+                      >
+                        500{" "}
+                      </SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-
-                {/* <Button className="mt-1 ml-4 bg-[#79be6d]" >test</Button> */}
-
                 <Button className="mt-1 ml-4 bg-[#79be6d] text-white">
                   <LuRefreshCcw /> Refresh
-                </Button> 
+                </Button>
                 <Select>
-                  <SelectTrigger className="w-[120px] mt-1 ml-2">
+                  <SelectTrigger className="w-[120px] mt-1 ml-2 bg-[#79be6d] text-white">
                     <SelectValue placeholder="Deploy to..." />
                   </SelectTrigger>
                   <SelectContent>
@@ -204,14 +234,16 @@ function PrivateDomain() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-                 {/* <Button className="mt-1 ml-4 bg-[#79be6d]">
-                  <RiDeleteBin5Fill /> Delete
-                </Button>  */}
-
+                <Button className="mt-1 ml-4 bg-[#79be6d] text-white">
+                  <AiOutlineDelete /> Delete
+                </Button>
+                <Button className="mt-1 ml-4 bg-[#79be6d] text-white ">
+                  <FaFolderOpen /> Import Domains
+                </Button>
+            
                 <Sheet>
                   <SheetTrigger>
-
-                    {/* <Button className="mt-1 ml-4 bg-[#79be6d]">Import Domains</Button> */}
+                  
                   </SheetTrigger>
                   <SheetContent>
                     <SheetHeader>
@@ -238,49 +270,46 @@ function PrivateDomain() {
                         Domain
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Source
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
                         TF
                       </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200text-xs text-blue-900 ">
+                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
                         CF
                       </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MAY BL
+                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200text-xs text-blue-900 ">
+                        Maj BL
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MAY RD
+                        Maj RD
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MAY Topics
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900" >
-                        Maj lang
+                        Maj TO
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Site lang
+                        Maj Lang
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MOZ DA
+                        Site Lang
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        MOZ PA
+                        Moz DA
+                      </TableHead>
+                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
+                        Moz PA
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
                         Age
                       </TableHead>
-                      <TableHead className="text-center  text-white from-slate-200 bg-[#1f2937] text-xs">
+                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
                         WS Score
                       </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        WS Redirect
+                      <TableHead className="text-center  text-white from-slate-200 bg-[#1f2937] text-xs">
+                        WS Redirects
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
                         WS Parked
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        WS A/History
+                        WS A/ History
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
                         WS Drops
@@ -292,13 +321,13 @@ function PrivateDomain() {
                         Out Links Internal
                       </TableHead>
                       <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
+                        Out Links External
+                      </TableHead>
+                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
+                        Out Domains External
+                      </TableHead>
+                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
                         Date Aded
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Price
-                      </TableHead>
-                      <TableHead className="text-center  border bg-gradient-to-b from-slate-200 text-xs text-blue-900">
-                        Expires
                       </TableHead>
                     </TableRow>
                   </TableHeader>
@@ -334,4 +363,3 @@ function PrivateDomain() {
 }
 
 export default PrivateDomain;
-

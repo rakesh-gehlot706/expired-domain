@@ -54,8 +54,8 @@ const NAVIGATION_CONFIG = {
         );
       },
       submenuItems: [
-        { label: 'Private Domain', path: '#' },
-        { label: 'Watch List', path: '#' },
+        { label: 'Private Domain', path: '/pages/domain/privateDomain' },
+        { label: 'Watch List', path: '/pages/domain/watchList' },
        
       ],
     },
@@ -68,8 +68,8 @@ const NAVIGATION_CONFIG = {
         return  <MdContentCopy className={`${className} size={size} color={color} text-m`} style={{ width: `${10}px`, height: `${10}px` }} />
       },
       submenuItems: [
-        { label: 'Content Creator', path: '#' },
-        { label: 'SZ Words Usage', path: '#' },
+        { label: 'Content Creator', path: '/pages/content/ContentCreator' },
+        { label: 'SZ Words Usage', path: '/pages/content/SzwordsUsage' },
         
       ],
     },
@@ -84,8 +84,8 @@ const NAVIGATION_CONFIG = {
         );
       },
       submenuItems: [
-        { label: 'PBN Hosting', path: '#' },
-        { label: 'Ahrefs', path: '#' },
+        { label: 'PBN Hosting', path: '/pages/setting/PbnHosting'},
+        { label: 'Ahrefs', path: '/pages/setting/Ahrefs' },
       ],
     },
     {
